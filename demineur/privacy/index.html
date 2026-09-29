@@ -90,12 +90,14 @@
   <p>Cette politique de confidentialité décrit comment l'application <strong>Démineur</strong>, éditée par RunningHorse, traite les informations lorsque vous utilisez l'application.</p>
 
   <h2>1. Données stockées localement sur votre appareil</h2>
-  <p>L'application enregistre les informations suivantes uniquement sur votre appareil, sans les transmettre à RunningHorse ni à un serveur externe :</p>
+  <p>L'application enregistre les informations suivantes sur votre appareil. RunningHorse n'exploite aucun serveur et ne reçoit aucune de ces données :</p>
   <ul>
-    <li>Vos statistiques de jeu (victoires, défaites, séries, meilleurs temps et scores)</li>
-    <li>Vos préférences (langue, thème clair/sombre, volume, couleurs de récompense équipées)</li>
+    <li>Vos statistiques de jeu (victoires, défaites, séries, meilleurs temps, scores du mode Infini) et vos trophées</li>
+    <li>Vos préférences (langue, thème clair/sombre, volume de la musique et des effets)</li>
+    <li>Un indicateur indiquant si l'achat « Enlever la publicité » est actif (voir section 3)</li>
   </ul>
-  <p>Ces données restent sur votre appareil et sont supprimées si vous désinstallez l'application ou utilisez la fonction de réinitialisation des statistiques dans les paramètres.</p>
+  <p>Certaines de ces données quittent toutefois l'appareil vers des services de Google : vos records et vos trophées si l'application est connectée à Google Play Jeux (section 5). Les services publicitaires de Google collectent par ailleurs leurs propres données techniques (section 2).</p>
+  <p>Toutes ces données locales sont supprimées si vous désinstallez l'application. La fonction « Réinitialiser les statistiques » des Paramètres efface vos statistiques, records et trophées sur l'appareil ; elle ne modifie ni vos préférences, ni l'achat, ni la sauvegarde Google Play Jeux (section 5).</p>
 
   <h2>2. Publicités et services tiers</h2>
   <p>L'application affiche des publicités sous forme de bannière, fournies par le service <strong>Google AdMob</strong>. Aucun autre format publicitaire (plein écran, vidéo récompensée, natif) n'est utilisé.</p>
@@ -111,20 +113,28 @@
 
   <h2>4. Consentement et base légale du traitement</h2>
   <p>Le stockage local de vos statistiques et préférences (section 1) est nécessaire au fonctionnement du jeu : il repose sur l'exécution du service que vous nous demandez.</p>
-  <p>L'affichage de publicités repose sur votre consentement. Si vous êtes situé dans l'Espace économique européen, au Royaume-Uni ou en Suisse, un formulaire de consentement s'affiche au premier lancement de l'application. Tant que vous n'avez pas fait votre choix, aucune publicité n'est chargée. Si vous refusez, aucune publicité personnalisée ne vous est proposée, mais des publicités non personnalisées peuvent tout de même être affichées. Vous pouvez retirer ce consentement à tout moment depuis Réglages > Options de confidentialité.</p>
+  <p>L'affichage de publicités repose sur votre consentement. Si vous êtes situé dans l'Espace économique européen, au Royaume-Uni ou en Suisse, un formulaire de consentement s'affiche au premier lancement de l'application. Tant que vous n'avez pas fait votre choix, aucune publicité n'est chargée. Si vous refusez, aucune publicité personnalisée ne vous est proposée, mais des publicités non personnalisées peuvent tout de même être affichées. Vous pouvez retirer ce consentement à tout moment depuis Paramètres > Options de confidentialité.</p>
   <p>Hors Espace économique européen, Royaume-Uni et Suisse, ce formulaire ne s'affiche pas et les publicités peuvent être chargées sans cette étape, conformément aux règles applicables dans ces territoires.</p>
 
-  <h2>5. Compte et synchronisation (fonctionnalité à venir)</h2>
-  <p>Si vous choisissez de lier votre compte Google Play à l'application, certaines données de progression (statistiques, records) peuvent être synchronisées via les services Google Play Games afin de vous permettre de retrouver votre progression sur un autre appareil. Cette fonctionnalité est facultative et n'est active que si vous l'activez explicitement.</p>
+  <h2>5. Google Play Jeux : connexion, trophées et sauvegarde</h2>
+  <p>À chaque lancement, l'application tente de se connecter à <strong>Google Play Jeux</strong>. Selon la configuration de votre appareil, la connexion se fait automatiquement ou Google affiche son propre écran de connexion. Si aucun profil Google Play Jeux n'est disponible, si vous refusez ou si l'appareil est hors ligne, le jeu fonctionne normalement, sans cette fonction. Vous pouvez aussi vous connecter plus tard depuis Paramètres > « Lier mon compte Google Play ».</p>
+  <p>Une fois connectée, l'application envoie à Google Play Jeux :</p>
+  <ul>
+    <li>vos trophées débloqués, publiés comme réussites de votre profil Google Play Jeux ;</li>
+    <li>une sauvegarde de progression contenant vos meilleurs temps (Facile, Moyen, Difficile), vos meilleures séries de victoires, vos meilleurs scores du mode Infini et la liste de vos trophées.</li>
+  </ul>
+  <p>Cette sauvegarde est envoyée à la connexion, à la fin d'une partie gagnée ou d'une série du mode Infini, et lorsque l'application passe en arrière-plan. Elle est restaurée sur un autre appareil connecté au même compte : le meilleur résultat des deux appareils est conservé. Vos compteurs (victoires, défaites, série en cours, cumuls) restent propres à chaque appareil et ne sont pas envoyés.</p>
+  <p>Lors de la connexion, Google transmet à l'application votre identifiant et votre nom de joueur ; l'application ne les enregistre pas. Ces données sont traitées par Google selon sa propre politique de confidentialité (<a href="https://policies.google.com/privacy">policies.google.com/privacy</a>) et <strong>ne sont pas transmises à RunningHorse</strong>.</p>
+  <p>La réinitialisation des statistiques dans les Paramètres n'efface que les données de l'appareil : la sauvegarde Google Play Jeux n'est pas effacée par l'application et peut être réappliquée à la connexion suivante, et les réussites déjà débloquées ne peuvent pas être retirées par l'application. Pour gérer ou supprimer votre profil et vos données Google Play Jeux, utilisez les paramètres de Google Play Jeux ou de votre compte Google (<a href="https://myaccount.google.com/">myaccount.google.com</a>).</p>
 
   <h2>6. Partage des données</h2>
-  <p>RunningHorse ne vend ni ne partage vos données personnelles avec des tiers, à l'exception de Google AdMob pour la diffusion des publicités mentionnée à la section 2, de Google Play pour le paiement de l'achat intégré mentionné à la section 3, et des services Google Play mentionnés à la section 5 si vous activez cette fonctionnalité.</p>
+  <p>RunningHorse ne vend ni ne partage vos données personnelles avec des tiers, à l'exception de Google : Google AdMob pour la diffusion des publicités (section 2), Google Play pour le paiement de l'achat intégré (section 3), et Google Play Jeux pour les trophées et la sauvegarde de progression lorsque l'application y est connectée (section 5).</p>
 
   <h2>7. Vos droits (RGPD)</h2>
-  <p>Vos statistiques de jeu et vos préférences restent sur votre appareil : RunningHorse n'exploite aucune base de données de comptes utilisateurs et ne peut donc recevoir aucune demande d'accès, de rectification ou d'effacement portant sur ces données locales — vous les effacez vous-même via la réinitialisation des statistiques dans les paramètres de l'app, ou en désinstallant l'application.</p>
-  <p>Pour les données techniques traitées par Google AdMob, vous disposez, conformément au RGPD, des droits suivants :</p>
+  <p>Vos statistiques de jeu et vos préférences sont stockées sur votre appareil : RunningHorse n'exploite aucune base de données de comptes utilisateurs et ne peut donc recevoir aucune demande d'accès, de rectification ou d'effacement portant sur ces données locales — vous les effacez vous-même via la réinitialisation des statistiques dans les paramètres de l'app, ou en désinstallant l'application.</p>
+  <p>Pour les données traitées par Google (AdMob, Google Play, Google Play Jeux), vous disposez, conformément au RGPD, des droits suivants :</p>
   <ul>
-    <li>Droit d'accès, de rectification et d'opposition, exercés directement auprès de Google via vos paramètres publicitaires (adssettings.google.com)</li>
+    <li>Droit d'accès, de rectification, d'effacement et d'opposition, exercés directement auprès de Google : paramètres publicitaires (adssettings.google.com), paramètres de Google Play Jeux, ou votre compte Google (myaccount.google.com)</li>
     <li>Droit de retirer votre consentement à tout moment (voir section 4)</li>
     <li>Droit d'introduire une réclamation auprès de l'autorité de protection des données de votre pays de résidence</li>
   </ul>
