@@ -1,0 +1,189 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Running Horse – Jeux Android</title>
+<meta name="description" content="Running Horse est un petit studio indépendant de Suisse romande : des jeux Android soignés. Démineur, WallUp et CyberSlyx.">
+<meta name="theme-color" content="#0B1E2D">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="canonical" href="https://runninghorse-games.github.io/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Running Horse">
+<meta property="og:locale" content="fr_CH">
+<meta property="og:title" content="Running Horse – Jeux Android">
+<meta property="og:description" content="Petit studio indépendant de Suisse romande : des jeux Android soignés. Démineur, WallUp et CyberSlyx.">
+<meta property="og:url" content="https://runninghorse-games.github.io/">
+<meta property="og:image" content="https://runninghorse-games.github.io/assets/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<style>
+  /* Charte graphique Running Horse (identique à l'app : lib/theme/app_theme.dart) */
+  @font-face { font-family: "Montserrat"; font-weight: 400; font-display: swap; src: url("assets/fonts/montserrat-400.woff") format("woff"); }
+  @font-face { font-family: "Montserrat"; font-weight: 600; font-display: swap; src: url("assets/fonts/montserrat-600.woff") format("woff"); }
+  @font-face { font-family: "Montserrat"; font-weight: 700; font-display: swap; src: url("assets/fonts/montserrat-700.woff") format("woff"); }
+  :root {
+    --navy: #0B1E2D;        /* fond sombre */
+    --navy-light: #14293B;  /* surfaces (cartes) */
+    --cyan: #00D1FF;        /* accent studio, CyberSlyx */
+    --green: #00E676;       /* accent WallUp */
+    --orange: #FF5A3D;      /* accent Démineur */
+    --text: #FFFFFF;
+    --muted: #9db2c2;
+    --line: rgba(255,255,255,.10);
+    --font: "Montserrat", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  }
+  * { box-sizing: border-box; }
+  html { background: var(--navy); }
+  body {
+    margin: 0; min-height: 100vh;
+    font-family: var(--font); color: var(--text); line-height: 1.6;
+    /* fond de la page de garde des jeux : dégradé navy clair → navy + halo cyan en haut */
+    background:
+      radial-gradient(120% 55% at 50% 0%, rgba(0,209,255,.18), transparent 70%),
+      linear-gradient(180deg, var(--navy-light), var(--navy) 60%) no-repeat;
+    background-color: var(--navy);
+  }
+  .wrap { max-width: 1040px; margin: 0 auto; padding: 0 20px; }
+  header.hero { padding: 64px 0 40px; text-align: center; }
+  .logo { width: min(240px, 60vw); height: auto; }
+  h1 { margin: 20px 0 0; font-size: clamp(2rem, 7vw, 3.2rem); letter-spacing: .1em; text-transform: uppercase; line-height: 1.15; }
+  .sub { margin: 8px 0 22px; font-weight: 600; font-size: .85rem; letter-spacing: .4em; text-transform: uppercase; color: var(--cyan); }
+  .tagline { color: var(--muted); max-width: 600px; margin: 0 auto; font-size: 1.05rem; }
+  section { padding: 16px 0 32px; }
+  h2 { font-size: 1rem; margin: 0 0 20px; text-transform: uppercase; letter-spacing: .2em; color: var(--cyan); }
+  .grid { display: grid; gap: 22px; grid-template-columns: repeat(auto-fit, minmax(min(290px, 100%), 1fr)); }
+  .card {
+    --accent: var(--cyan);
+    position: relative; background: var(--navy-light);
+    border: 1px solid var(--line); border-top: 3px solid var(--accent); border-radius: 16px;
+    padding: 24px; display: flex; flex-direction: column; gap: 12px;
+    transition: transform .15s ease, box-shadow .15s ease;
+  }
+  .card:hover { transform: translateY(-3px); box-shadow: 0 8px 28px rgba(0,0,0,.35); }
+  .card.demineur { --accent: var(--orange); }
+  .card.wallup { --accent: var(--green); }
+  .card.cyberslyx { --accent: var(--cyan); }
+  .head { display: flex; align-items: center; gap: 16px; }
+  .icon { width: 72px; height: 72px; border-radius: 16px; flex: none; background: var(--navy); }
+  .card h3 { margin: 0; font-size: 1.4rem; line-height: 1.2; }
+  .badge {
+    display: inline-block; margin-top: 6px; font-size: .68rem; font-weight: 700; letter-spacing: .12em;
+    text-transform: uppercase; padding: 3px 9px; border-radius: 6px; border: 1px solid var(--accent); color: var(--accent);
+  }
+  .badge.live { background: var(--accent); color: var(--navy); }
+  .shot { display: block; width: min(100%, 220px); height: auto; margin: 4px auto; border-radius: 16px; border: 2px solid var(--accent); background: var(--navy); }
+  .card p { margin: 0; color: var(--muted); font-size: .95rem; flex: 1; }
+  /* Les cartes partagent les lignes de la grille : en-têtes, textes, captures et boutons s'alignent d'une carte à l'autre */
+  @supports (grid-template-rows: subgrid) {
+    .card { display: grid; grid-row: span 4; grid-template-rows: subgrid; row-gap: 12px; }
+    .card .head { grid-row: 1; }
+    .card p { grid-row: 2; }
+    .card .shot { grid-row: 3; align-self: start; }
+    .card .btn { grid-row: 4; align-self: end; }
+  }
+  .btn {
+    display: block; text-align: center; text-decoration: none; font-family: var(--font); font-weight: 700;
+    letter-spacing: .06em; text-transform: uppercase; font-size: .85rem;
+    padding: 13px 18px; border-radius: 14px; margin-top: 4px;
+  }
+  .btn.play { background: var(--accent); color: var(--navy); }
+  .btn.play:hover { filter: brightness(1.1); }
+  .btn.soon { border: 1.5px dashed var(--line); color: var(--muted); cursor: default; }
+  .btn:focus-visible, footer a:focus-visible { outline: 2px solid var(--cyan); outline-offset: 3px; }
+  .more { text-align: center; }
+  .more .btn { display: inline-block; border: 1.5px solid var(--cyan); color: var(--text); }
+  .more .btn:hover { background: rgba(0,209,255,.12); }
+  footer { border-top: 1px solid var(--line); padding: 28px 0 40px; text-align: center; color: var(--muted); font-size: .85rem; }
+  footer p { margin: 4px 0; }
+  footer a { color: var(--cyan); text-decoration: none; }
+  footer a:hover { text-decoration: underline; }
+  @media (max-width: 420px) { .icon { width: 60px; height: 60px; } .card { padding: 20px; } }
+  @media (prefers-reduced-motion: reduce) { .card { transition: none; } .card:hover { transform: none; } }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <img class="logo" src="assets/logo-runninghorse.svg" alt="" width="240" height="155">
+    <h1>Running Horse</h1>
+    <div class="sub">Arcade Games</div>
+    <p class="tagline">
+      Petit studio indépendant basé en Suisse romande. Nous concevons des jeux Android
+      soignés, simples à prendre en main et agréables à rejouer.
+    </p>
+  </div>
+</header>
+
+<main class="wrap">
+  <section id="games">
+    <h2>Nos jeux</h2>
+    <div class="grid">
+
+      <!-- ===== DÉMINEUR ===== -->
+      <article class="card demineur">
+        <div class="head">
+          <img class="icon" src="assets/icon-demineur.png" alt="" width="72" height="72">
+          <div>
+            <h3>Démineur</h3>
+            <span class="badge live">Disponible</span>
+          </div>
+        </div>
+        <p>Le jeu de logique que tout le monde connaît, dans une version soignée : trois niveaux plus votre propre grille, un mode infini, 16 trophées, mode clair et sombre, 8 langues. Fonctionne sans connexion.</p>
+        <img class="shot" src="assets/screens/screen-demineur.webp" alt="Capture d'écran de Démineur : grille en cours de partie, avec drapeaux et chiffres" width="480" height="478" loading="lazy" decoding="async">
+        <a class="btn play" href="https://play.google.com/store/apps/details?id=com.runninghorse.demineur" target="_blank" rel="noopener">Google Play</a>
+      </article>
+
+      <!-- ===== WALLUP ===== -->
+      <article class="card wallup">
+        <div class="head">
+          <img class="icon" src="assets/icon-wallup.png" alt="" width="72" height="72">
+          <div>
+            <h3>WallUp</h3>
+            <span class="badge">En développement</span>
+          </div>
+        </div>
+        <p>Le jeu de territoire où chaque mur compte : posez un mur d'un geste, piégez les balles qui rebondissent et conquérez le terrain. 4 modes de difficulté, 9 types de balles, 17 trophées, 8 langues.</p>
+        <img class="shot" src="assets/screens/screen-wallup.webp" alt="Capture d'écran de WallUp : niveau 1 en mode Normal, murs verts posés et balles en mouvement" width="480" height="960" loading="lazy" decoding="async">
+        <!-- Au lancement : remplacer le span par <a class="btn play" href="URL_GOOGLE_PLAY" target="_blank" rel="noopener">Google Play</a> et le badge par <span class="badge live">Disponible</span> -->
+        <span class="btn soon" aria-disabled="true">Bientôt sur Google Play</span>
+      </article>
+
+      <!-- ===== CYBERSLYX ===== -->
+      <article class="card cyberslyx">
+        <div class="head">
+          <img class="icon" src="assets/icon-cyberslyx.png" alt="" width="72" height="72">
+          <div>
+            <h3>CyberSlyx</h3>
+            <span class="badge">En développement</span>
+          </div>
+        </div>
+        <p>Un jeu d'arcade dans un univers cyber néon : tracez des lignes pour reprendre le terrain aux Virus. 100 niveaux répartis en 10 chapitres, des boss, jusqu'à l'affrontement final avec THE ARCHITECT.</p>
+        <!-- Au lancement : remplacer le span par <a class="btn play" href="https://play.google.com/store/apps/details?id=com.runninghorse.cyberslyx" target="_blank" rel="noopener">Google Play</a> et le badge par <span class="badge live">Disponible</span> -->
+        <span class="btn soon" aria-disabled="true">Bientôt sur Google Play</span>
+      </article>
+
+    </div>
+  </section>
+
+  <section class="more">
+    <!-- Même URL que le bouton « More games » dans les jeux -->
+    <a class="btn" href="https://play.google.com/store/apps/developer?id=RunningHorse" target="_blank" rel="noopener">Tous nos jeux sur Google Play</a>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <p>© <span id="y">2026</span> Running Horse · Suisse romande ·
+    <a href="mailto:runninghorsegames@gmail.com">runninghorsegames@gmail.com</a></p>
+    <p>Politique de confidentialité :
+      <a href="demineur/privacy/">Démineur</a> ·
+      <a href="wallup/privacy/">WallUp</a></p>
+  </div>
+</footer>
+
+<script>document.getElementById('y').textContent = new Date().getFullYear();</script>
+</body>
+</html>
